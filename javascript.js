@@ -5,6 +5,7 @@ let computerScore=0;
 function getComputerChoice(){
 
    let choise=Math.random();
+
    if (choise<=(1/3))
       choise="rock";
       else if (choise<=(2/3))
@@ -17,23 +18,29 @@ function getComputerChoice(){
 }
 function getHumanChoice(index){
     let answer=prompt(`Round ${index} \n enter your choice between rock,paper and scissor!`);
-     return answer;
+     return answer?answer:Error;
 }
 function playRound(index){
   let x=getComputerChoice();
   let y=getHumanChoice(index).toLowerCase();
   let signal="true";
-    console.log("x");
-    console.log("y");
+   
+  //  console.log("y");
           
   switch (y) {
     case "rock":
-        console.log(y);
+    //    console.log(y);
         
+
         if (x==="paper"){
            alert("you Lost!!Computer win");
            computerScore++;}
-        else{
+        else if (x==="rock"){
+           alert("you are Even");
+           
+            break;
+           }
+        else {
             alert("Congratualtions!!You Win!");
             humanScore++;}
         break;
@@ -41,6 +48,12 @@ function playRound(index){
         if (x==="scissor"){
            alert("you Lost!!Computer win");
            computerScore++;}
+        else if(x==="paper"){
+          alert("you are Even");
+             
+            break;
+
+           }
         else{
             alert("Congratualtions!!You Win!");
             humanScore++;}
@@ -50,6 +63,13 @@ function playRound(index){
         if (x==="rock"){
            alert("you Lost!!Computer win");
            computerScore++;}
+        
+       else if (x==="scissor"){
+        alert("you are Even");     
+        break;
+
+           }
+        
         else{
             alert("Congratualtions!!You Win!");
             humanScore++;}
@@ -65,15 +85,19 @@ function playRound(index){
   function playGame(){
     for (let index =1 ; index <6; index++) {
      if(!playRound(index)){
-     humanScore=computerScore=0;
+     humanScore=computerScore=-1;
 
         break;}
     }
+
     if(humanScore>computerScore){
         alert(`congratulations you Won ${humanScore} to ${computerScore} the Game!!You are as Lucky as Swan!!!`);
-    }else if(humanScore== 0){
+    }else if(humanScore== -1){
         alert("try again!");
-    }else{
+    }else if(humanScore==computerScore){
+        alert("YOU are Even with the computer,please try again");
+    }
+    else{
         alert(`You Lost!!!${humanScore} to ${computerScore} you should work on your luck mate`);
     }
     humanScore=computerScore=0;
