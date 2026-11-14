@@ -102,4 +102,5 @@ function playRound(index){
     }
     humanScore=computerScore=0;
 }
+console.log("hello");
 playGame();
