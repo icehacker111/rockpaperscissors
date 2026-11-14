@@ -59,23 +59,27 @@ function playRound(index){
          signal=false;
         break;
   }
+
   return signal;
 }
 
   function playGame(){
-    for (let index =1 ; index <6; index++) {
-     if(!playRound(index)){
-     humanScore=computerScore=0;
+    let index=1;
+    while(playRound(index)){
+        index++;
+   if(computerScore==5||humanScore==5){
+    if(computerScore>humanScore){
+    alert(`You Lost to Computer ${computerScore} to ${humanScore}`);}
+   
+    else{
+        alert(`Congratulations!!You Won ${computerScore} to ${humanScore}`);
+    }
+   index=1;
+   if(window.confirm("Would YOu Like to Try Again")){
+continue;}
 
-        break;}
+  break;
+   }
     }
-    if(humanScore>computerScore){
-        alert(`congratulations you Won ${humanScore} to ${computerScore} the Game!!You are as Lucky as Swan!!!`);
-    }else if(humanScore== 0){
-        alert("try again!");
-    }else{
-        alert(`You Lost!!!${humanScore} to ${computerScore} you should work on your luck mate`);
-    }
-    humanScore=computerScore=0;
 }
 playGame();
