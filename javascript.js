@@ -2,37 +2,60 @@ console.log("Hello world!");
 let x=40;
 let humanScore=0;
 let computerScore=0;
+const buttons=document.querySelectorAll("button");
+const round=document.querySelector("#Round");
+const cptScore=document.querySelector("#cptScore");
+const hmnScore=document.querySelector("#hmnScore");
+const pcEmoji=document.querySelector("#pcEmoji");
+const hmnEmoji=document.querySelector("#hmnEmoji");
+const pcValue=document.querySelector("#pcValue");
+const hmnValue=document.querySelector("#hmnValue");
+ let answer="hio";
+let signal="true"; 
+  
+
 function getComputerChoice(){
-
+ 
    let choise=Math.random();
-
-   if (choise<=(1/3))
-      choise="rock";
-      else if (choise<=(2/3))
-         choise="paper";
-         else
-            choise="scissor";
-
+   if (choise<=(1/3)){
+      choise="ROCK";
+     pcEmoji.textContent=emoji(choise);
+     pcValue.textContent=choise;}
+   else if (choise<=(2/3)){
+         choise="PAPER";
+         pcEmoji.textContent=emoji(choise);
+     pcValue.textContent=choise;
+   }
+    else{
+        choise="SCISSOR";
+    pcEmoji.textContent=emoji(choise);
+      pcValue.textContent=choise;
+    }
     console.log(choise);
     return choise; 
 }
-function getHumanChoice(index){
-    let answer=prompt(`Round ${index} \n enter your choice between rock,paper and scissor!`);
-     return answer?answer:Error;
-}
-function playRound(index){
-  let x=getComputerChoice();
-  let y=getHumanChoice(index).toLowerCase();
-  let signal="true";
-   
-  //  console.log("y");
-          
-  switch (y) {
-    case "rock":
-    //    console.log(y);
-        
+function playRound(index,answer){
+  
 
-        if (x==="paper"){
+     hmnValue.textContent=answer;
+    hmnEmoji.textContent=emoji(answer);
+    
+    round.textContent=`Round ${index}`;
+    
+  let y=answer;
+   
+    let x=getComputerChoice();
+    console.log("x");
+    console.log("y");
+    if(y.toUpperCase()==x){
+            alert("YOU ARE EVEN");
+             }
+    else{
+  switch (y) {
+    case "ROCK":
+        console.log(y);
+        
+        if (x==="PAPER"){
            alert("you Lost!!Computer win");
            computerScore++;}
         else if (x==="rock"){
@@ -44,8 +67,8 @@ function playRound(index){
             alert("Congratualtions!!You Win!");
             humanScore++;}
         break;
-    case "paper":
-        if (x==="scissor"){
+    case "PAPER":
+        if (x==="SCISSOR"){
            alert("you Lost!!Computer win");
            computerScore++;}
         else if(x==="paper"){
@@ -59,8 +82,8 @@ function playRound(index){
             humanScore++;}
         
         break;
-    case "scissor":
-        if (x==="rock"){
+    case "SCISSOR":
+        if (x==="ROCK"){
            alert("you Lost!!Computer win");
            computerScore++;}
         
@@ -78,29 +101,89 @@ function playRound(index){
         alert("something went wrong!");
          signal=false;
         break;
-  }
+  }}
+  cptScore.textContent=`${computerScore}`;
+  hmnScore.textContent=`${humanScore}`;
+
   return signal;
 }
 
   function playGame(){
-    for (let index =1 ; index <6; index++) {
-     if(!playRound(index)){
-     humanScore=computerScore=-1;
+    let index=1;
+    
 
-        break;}
-    }
 
-    if(humanScore>computerScore){
-        alert(`congratulations you Won ${humanScore} to ${computerScore} the Game!!You are as Lucky as Swan!!!`);
-    }else if(humanScore== -1){
-        alert("try again!");
-    }else if(humanScore==computerScore){
-        alert("YOU are Even with the computer,please try again");
+  buttons.forEach((button)=> button.addEventListener("click",function (event){console.log(event.target.id);
+  if(signal){
+  signal=playRound(index,event.target.id);
+  index++;
+   if(computerScore==5||humanScore==5){
+    signal=false;
+    setTimeout(() => {
+  if(computerScore>humanScore){
+    alert(`You Lost to Computer ${computerScore} to ${humanScore}`);
+
     }
+   
     else{
-        alert(`You Lost!!!${humanScore} to ${computerScore} you should work on your luck mate`);
-    }
-    humanScore=computerScore=0;
+        alert(`Congratulations!!You Won ${computerScore} to ${humanScore}`);
+      
+      }
+  
+   if(window.confirm("Would YOu Like to Try Again")){
+
+      signal=true;
+      index=1;
+    computerScore=humanScore=0;
+  
+  cptScore.textContent=`0`;
+  hmnScore.textContent=`0`;
+  round.textContent=` `;
+   
+
+  }else{
+cptScore.textContent=`0`;
+  hmnScore.textContent=`0`;
+  round.textContent=` `;
+  
+
+  }
+  
+     
+}, 50);
+    
+   
+    }}
+    else{
+      if(window.confirm("Would YOu Like to Try Again")){
+
+      signal=true;
+      index=1;
+    computerScore=humanScore=0;
+      }}
+  
+
+
 }
-console.log("hello");
+));}
+
+
+ 
+    
+
+function emoji(choise){
+ let emo=`?`;
+    if (choise==="ROCK")
+     emo=`✊🏼`;
+   else if (choise==="PAPER")
+     emo=`🫳`;
+   else
+       emo=`✌️`;
+     
+    console.log(emo);
+    return emo; 
+
+}
+  
+   
 playGame();

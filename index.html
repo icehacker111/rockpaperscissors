@@ -5,10 +5,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ROCK PAPER SCISSOR</title>
     <script defer src="javascript.js"></script>
+    <style>
+   #content{
+     display: flex;
+    justify-content: center; /* Centers horizontally (default row direction) */
+    align-items: center;    /* Centers vertically (cross axis) */
+    height: 100vh;  
 
+   } 
+   button {
+    background-color: #f0f0f0;
+      border: 2px solid #ccc;
+      border-radius: 12px;
+      font-size: 50px;
+      padding: 10px 20px;
+      margin:30px 30px;
+     }
+
+    #head{
+    background-color: aqua;
+    font-weight: bold;
+    font-size: 40px;
+     text-align: center;
+    
+    }
+    img {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 50px;
+}
+#score{
+
+}
+.human,.computer{
+  font-size: 35px;
+  display:inline-block;
+  width:40%;
+
+}
+.interface,#round{
+  font-size:25px;
+}
+
+#Round{
+  text-decoration: underline;
+}
+#emoji{
+  display: block; 
+  margin-bottom: 10px;
+  font-size: 60px;
+  padding: 10px 20px;
+}
+    </style>
+  
 </head>
 <body>
+
+<Div id="content">
+  <Div id="head">ROCK PAPER SCISSOR
+    <p id="Round"></p>
+    <div class="interface">
+        <div class="human">
+          You:<span id="hmnScore"></span>
+          <div id="hmnEmoji">✊🏼<br></div>
+          <div id="hmnValue">ROCK</div>
+        </div>
+        <div class="computer">
+          Computer:<span id="cptScore"></span>
+          <div id="pcEmoji">🫳<br></div>
+          <div id="pcValue">PAPER</div>
+
+        </div>
+    </div>
     
+  <p id="score"></p>
     
+    <Div id="ButtonCont"> <button id="PAPER">🫳</button>
+          <button id="ROCK">✊🏼</button>
+          <button id="SCISSOR">✌️</button>
+        
+    </Div>
+  </Div>
+</Div>   
 </body>
 </html>
